@@ -5,7 +5,14 @@ import Footer from "@/components/Footer";
 import PuppyCard from "@/components/PuppyCard";
 import { puppies } from "@/data/puppies";
 
+const heroImages = [
+  "/images/rolezeira.jpg",
+  "/images/normal.jpg",
+  "/images/gestante.jpg",
+];
+
 export default function Home() {
+  const heroImage = heroImages[Math.floor(Math.random() * heroImages.length)];
   return (
     <div className="flex flex-col min-h-screen bg-dark-800">
       <Navbar />
@@ -54,7 +61,7 @@ export default function Home() {
           <div className="relative flex justify-center lg:justify-end">
             <div className="relative w-full max-w-md aspect-[3/4] rounded-xl overflow-hidden border-2 border-gold/40 shadow-[0_0_60px_rgba(147,51,234,0.2)]">
               <Image
-                src="/images/donatella_1.jpg"
+                src={heroImage}
                 alt="Donatella"
                 fill
                 sizes="(max-width: 768px) 100vw, 448px"
