@@ -8,7 +8,7 @@ interface PuppyCardProps {
 
 export default function PuppyCard({ puppy }: PuppyCardProps) {
   return (
-    <div className="relative flex flex-col bg-dark-800 rounded-lg overflow-hidden border border-gold/30 shadow-[0_8px_32px_rgba(0,0,0,0.5)] hover:border-gold/60 transition-all duration-300 hover:-translate-y-1">
+    <Link href={`/puppy/${puppy.id}`} className="relative flex flex-col bg-dark-800 rounded-lg overflow-hidden border border-gold/30 shadow-[0_8px_32px_rgba(0,0,0,0.5)] hover:border-gold/60 transition-all duration-300 hover:-translate-y-1">
       {/* Header bar */}
       <div className="flex items-center justify-between px-4 py-2 border-b border-gold/30 bg-dark-900">
         <span className="font-crimson text-base font-black text-cream uppercase tracking-wide">{puppy.name}</span>
@@ -66,13 +66,10 @@ export default function PuppyCard({ puppy }: PuppyCardProps) {
 
       {/* CTA */}
       <div className="px-4 pb-4">
-        <Link
-          href={`/puppy/${puppy.id}`}
-          className="block w-full text-center font-jakarta text-sm font-bold text-white bg-gold hover:bg-gold-light transition-colors py-2 rounded"
-        >
+        <span className="block w-full text-center font-jakarta text-sm font-bold text-white bg-gold hover:bg-gold-light transition-colors py-2 rounded">
           Invocar Detalhes
-        </Link>
+        </span>
       </div>
-    </div>
+    </Link>
   );
 }

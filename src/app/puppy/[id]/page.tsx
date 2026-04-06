@@ -1,9 +1,9 @@
 import { notFound } from "next/navigation";
-import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import YuGiOhCard from "@/components/YuGiOhCard";
+import ImageCarousel from "@/components/ImageCarousel";
 import { puppies, donatella } from "@/data/puppies";
 
 const allPuppies = [donatella, ...puppies];
@@ -26,14 +26,14 @@ export default async function PuppyPage({ params }: { params: Promise<{ id: stri
 
       <main className="flex-1 pt-16">
         <div className="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-          {/* Left: Yu-Gi-Oh Card */}
+
+          {/* Card — first in DOM = left on desktop, top on mobile */}
           <div className="flex justify-center lg:justify-start lg:sticky lg:top-24">
             <YuGiOhCard puppy={puppy} />
           </div>
 
-          {/* Right: Info panel */}
+          {/* Info panel */}
           <div className="flex flex-col gap-8">
-            {/* Title */}
             <div>
               <h1 className="font-crimson text-5xl font-black text-cream uppercase leading-tight">
                 {puppy.name}:{" "}
@@ -44,21 +44,12 @@ export default async function PuppyPage({ params }: { params: Promise<{ id: stri
               </p>
             </div>
 
-            {/* Photo gallery */}
+            {/* Photo carousel */}
             <div>
               <p className="font-jakarta text-xs font-bold text-gold uppercase tracking-widest mb-4">
                 Registro Visual
               </p>
-              <div className="flex gap-3">
-                {photoGallery.map((src, i) => (
-                  <div
-                    key={i}
-                    className="relative w-28 h-28 rounded-lg overflow-hidden border border-gold/30 shadow-md hover:border-gold/60 transition-colors"
-                  >
-                    <Image src={src} alt={`${puppy.name} foto ${i + 1}`} fill className="object-cover" />
-                  </div>
-                ))}
-              </div>
+              <ImageCarousel images={photoGallery} alt={puppy.name} />
             </div>
 
             {/* CTA buttons */}
@@ -103,7 +94,6 @@ export default async function PuppyPage({ params }: { params: Promise<{ id: stri
               </div>
             </div>
 
-            {/* Back link */}
             <Link
               href="/#gallery"
               className="inline-flex items-center gap-2 font-jakarta text-sm text-stone-400 hover:text-gold transition-colors"
@@ -114,6 +104,7 @@ export default async function PuppyPage({ params }: { params: Promise<{ id: stri
               Voltar ao Deck
             </Link>
           </div>
+
         </div>
       </main>
 

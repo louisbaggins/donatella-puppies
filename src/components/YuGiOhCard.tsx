@@ -10,7 +10,8 @@ const ASSET_PREFIX =
 
 const NATURAL_W = 1394;
 const NATURAL_H = 2031;
-const DEFAULT_SCALE = 0.3;
+// Initial scale based on typical mobile width (360px) to prevent layout shift on mount
+const DEFAULT_SCALE = 360 / NATURAL_W;
 
 function puppyToCard(puppy: Puppy): Data.Card {
   return {
