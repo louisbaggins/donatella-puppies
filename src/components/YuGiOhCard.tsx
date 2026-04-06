@@ -3,20 +3,19 @@
 import "yugioh-card-react/dist/style.css";
 import { Card, Data } from "yugioh-card-react";
 import { Puppy } from "@/data/puppies";
-import { YugiohCard } from "yugioh-card";
+import { useRef, useState, useEffect } from "react";
+
 const ASSET_PREFIX =
   "https://raw.githubusercontent.com/kooriookami/yugioh-card/refs/heads/master/src/assets/yugioh-card";
 
-// Card natural size
-const NATURAL_W = 1994;
+const NATURAL_W = 1394;
 const NATURAL_H = 2031;
-const SCALE = 0.3;
+const DEFAULT_SCALE = 0.3;
 
 function puppyToCard(puppy: Puppy): Data.Card {
   return {
     name: puppy.name,
     desc: `${puppy.description}\n\n${puppy.longDescription}`,
-    name_color: 'ドラゴン[族(ぞく)]',
     type: Data.Type.Fusion | Data.Type.Effect,
     attribute: Data.Attribute.Dark,
     level: puppy.level,
@@ -33,11 +32,22 @@ interface YuGiOhCardProps {
 }
 
 export default function YuGiOhCard({ puppy }: YuGiOhCardProps) {
-  // Outer div reserves the scaled space in the layout
-  // Card itself is rendered at natural size and scaled down via CSS transform
-  // style is spread onto .yugioh-container via rest_props
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const [scale, setScale] = useState(DEFAULT_SCALE);
+
+  useEffect(() => {
+    if (!wrapperRef.current) return;
+    const observer = new ResizeObserver(([entry]) => {
+      const w = entry.contentRect.width;
+      setScale(w / NATURAL_W);
+    });
+    observer.observe(wrapperRef.current);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <div style={{ width: NATURAL_W * SCALE, height: NATURAL_H * SCALE, overflow: "hidden" }}>
+    // Wrapper fills its parent width, height follows the card aspect ratio
+    <div ref={wrapperRef} style={{ width: "100%", height: NATURAL_H * scale, overflow: "hidden" }}>
       <Card
         card={puppyToCard(puppy)}
         image={puppy.imageUrl}
@@ -46,7 +56,7 @@ export default function YuGiOhCard({ puppy }: YuGiOhCardProps) {
         style={{
           width: NATURAL_W,
           height: NATURAL_H,
-          transform: `scale(${SCALE})`,
+          transform: `scale(${scale})`,
           transformOrigin: "top left",
         }}
       />
