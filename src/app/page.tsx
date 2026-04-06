@@ -119,12 +119,10 @@ export default function Home() {
             </h2>
 
             <p className="font-vietnam text-base text-stone-300 leading-relaxed">
-              Donatella foi adotada no começo de Março, sempre muito educada e carinhosa com todas, no entanto, ela carregava consigo um grande segredo!
+              Donatella foi adotada em 28 de fevereiro de 2026, com apenas 1 ano e 2 meses. Ela nos conquistou com sua doçura, e carinho; no entanto, por trás do olhar sereno daquela jovem, havia um grande segredo.
             </p>
-
             <p className="font-vietnam text-base text-stone-300 leading-relaxed">
-              Ela estava grávida de 7 filhotinhos, o segredo não pode ser mantido por muito tempo, a desconfiança surgiu na primeira consulta com o veterinário. 
-              Duas semanas após a adoção, a barriguinha já entregava o que viria a ser o maior segredo de Donatella!
+              O mistério não pôde ser guardado por muito tempo. A desconfiança surgiu logo na primeira consulta ao veterinário. Duas semanas depois, o que parecia apenas o conforto de um novo lar começou a revelar sua verdadeira face: a silhueta de Donatella mudava rápido de mais. Logo a barriguinha entregou seu maior segredo: no auge de sua adolescência, Donatella estava grávida de sete filhotinhos!
             </p>
             <div className="flex items-center gap-3 mt-2">
               <div className="w-8 h-8 rounded-full bg-gold/20 flex items-center justify-center">
